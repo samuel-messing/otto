@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from google.protobuf import text_format
 from optparse import OptionParser
 from pump import Pump
@@ -12,6 +12,10 @@ PUMPS = Pumps()
 def pump(pump_no, action):
   print pump_no + " action: " + action
   return pump_no
+
+@APP.route('/')
+def index():
+  return render_template('index.html', pumps = PUMPS)
 
 if __name__ == "__main__":
   parser = OptionParser()

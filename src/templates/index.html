@@ -1,0 +1,12 @@
+<html>
+<body>
+<table border=1>
+{% for pump in pumps.pumps %}
+  <tr>
+    <th> {{ pump.name }} </th>
+    <td> {{ pump.gpio_pin_number }} </td>
+  </tr>
+{% endfor %}
+</table>
+</body>
+</html>

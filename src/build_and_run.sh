@@ -33,4 +33,4 @@ protoc -I="${ROOT}/proto/" \
 	${ROOT}/proto/*
 
 # RUNNING SERVER =====================================
-python ${ROOT}/app.py
+PYTHONPATH="${GENFILES_ROOT}" python ${ROOT}/app.py

@@ -8,7 +8,7 @@
       <div class="column"></div>
       <div class="column">
         {% for pump in pumps.pumps %}
-          <a class="pump button is-fullwidth {{ "is-success" if pump.is_running else "" }}"
+          <a class="pump button is-large is-fullwidth {{ "is-success" if pump.is_running else "" }}"
              href="v1/pump/{{ pump.name }}/{{ "off" if pump.is_running else "on"}}">
             {{ pump.name }}
           </a><!-- .button -->

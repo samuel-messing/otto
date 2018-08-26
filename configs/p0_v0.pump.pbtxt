@@ -1,16 +1,16 @@
 pumps {
-  name: "Top Left"
+  name: "top_left"
   gpio_pin_number: 14
 }
 pumps {
-  name: "Top Right"
+  name: "top_right"
   gpio_pin_number: 15
 }
 pumps {
-  name: "Bottom Left"
+  name: "bottom_left"
   gpio_pin_number: 18
 }
 pumps {
-  name: "Bottom Right"
+  name: "bottom_right"
   gpio_pin_number: 23
 }

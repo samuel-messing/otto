@@ -5,6 +5,7 @@ package otto;
 message Pump {
   optional string name = 1;
   optional int32 gpio_pin_number = 2;
+  optional bool is_running = 3 [default = false];
 }
 
 message Pumps {

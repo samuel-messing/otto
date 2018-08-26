@@ -15,6 +15,7 @@ readonly VIRTUALENV_ROOT="otto-env"
 
 # CLEANING ===========================================
 rm -f "${GENFILES_ROOT}/*"
+rm ${ROOT}/*.pyc
 touch "${GENFILES_ROOT}/__init__.py"
 
 # VIRTUALENV =========================================

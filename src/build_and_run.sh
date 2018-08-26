@@ -8,10 +8,11 @@ set -ex
 # TODO - kill existing server first.
 
 readonly ROOT="src"
-readonly DEFAULT_CONFIG="p0_v0.pump.pbtxt"
 readonly CONFIGS_ROOT="configs"
 readonly GENFILES_ROOT="${ROOT}/genfiles"
 readonly VIRTUALENV_ROOT="otto-env"
+
+readonly DEFAULT_CONFIG="p0_v0.pump.pbtxt"
 
 # CLEANING ===========================================
 rm -f "${GENFILES_ROOT}/*"

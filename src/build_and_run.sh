@@ -8,6 +8,8 @@ set -ex
 # TODO - kill existing server first.
 
 readonly ROOT="src"
+readonly DEFAULT_CONFIG="p0_v0.pump.pbtxt"
+readonly CONFIGS_ROOT="configs"
 readonly GENFILES_ROOT="${ROOT}/genfiles"
 readonly VIRTUALENV_ROOT="otto-env"
 
@@ -33,4 +35,5 @@ protoc -I="${ROOT}/proto/" \
 	${ROOT}/proto/*
 
 # RUNNING SERVER =====================================
-PYTHONPATH="${GENFILES_ROOT}" python ${ROOT}/app.py
+PYTHONPATH="${GENFILES_ROOT}" python ${ROOT}/app.py \
+    --config_file="${CONFIGS_ROOT}/${DEFAULT_CONFIG}"

@@ -1,0 +1,16 @@
+pumps {
+  name: "Top Left"
+  gpio_pin_number: 14
+}
+pumps {
+  name: "Top Right"
+  gpio_pin_number: 15
+}
+pumps {
+  name: "Bottom Left"
+  gpio_pin_number: 18
+}
+pumps {
+  name: "Bottom Right"
+  gpio_pin_number: 23
+}

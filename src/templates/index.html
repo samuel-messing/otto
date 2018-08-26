@@ -1,20 +1,23 @@
 <html>
+  <link rel="stylesheet" type="text/css" href="css/bulma.css"/>
   <link rel="stylesheet" type="text/css" href="css/pump.css"/>
 <body>
-<table border=1>
-<tr><th>Name</th><td>GPIO</td><td>Running?</td></tr>
-{% for pump in pumps.pumps %}
-  <tr class="{{ "on" if pump.is_running else "off" }}">
-    <th> {{ pump.name }} </th>
-    <td> {{ pump.gpio_pin_number }} </td>
-    <td>
-      <a href="v1/pump/{{ pump.name }}/{{ "off" if pump.is_running else "on" }}">
-        {{ pump.is_running }}
-      </a>
-    </td>
-  </tr>
-{% endfor %}
-</table>
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column"></div>
+      <div class="column">
+        {% for pump in pumps.pumps %}
+          <a class="pump button is-fullwidth {{ "is-success" if pump.is_running else "" }}"
+             href="v1/pump/{{ pump.name }}/{{ "off" if pump.is_running else "on"}}">
+            {{ pump.name }}
+          </a><!-- .button -->
+        {% endfor %}
+      </div><!-- .column -->
+      <div class="column"></div>
+    </div><!-- .columns -->
+  </div><!-- .container -->
+</div><!-- .section -->
 <script type="text/javascript" src="js/pump.js"/>
 </body>
 </html>

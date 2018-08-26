@@ -11,4 +11,4 @@ def pump(pump_no, action):
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
     pump =  Pump(1)
-    print "Pump state: " + pump.state
+    print "Pump state: " + str(pump.state)

@@ -1,3 +1,4 @@
+*.pyc
 *.swp
 otto-env/*
 src/genfiles/*

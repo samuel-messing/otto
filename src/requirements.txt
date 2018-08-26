@@ -1,3 +1,5 @@
 Flask==1.0.2
-protobuf=3.6.1
-ipython=5.8.0
+ipython==5.8.0
+protobuf==3.6.1
+rpi.gpio==0.6.3
+schedule==0.5.0

@@ -1,6 +1,7 @@
 from flask import Flask, redirect, render_template, send_from_directory
 from optparse import OptionParser
 from pump import Pump
+import RPi.GPIO as GPIO
 import sys
 
 APP = Flask(__name__)
@@ -39,6 +40,12 @@ if __name__ == "__main__":
     print "Failed to parse config file: " + options.config_file + " (empty?)"
     sys.exit(1)
 
-  print "Running with config:"
+  print "INFO: Running with config:"
   print PUMPS
+
+  print "INFO: Initiating GPIO setup..."
+  GPIO.setmode(GPIO.BCM)
+  [pump.init() for pump in PUMPS.values()]
+
+  print "INFO Starting server..."
   APP.run(host="0.0.0.0")

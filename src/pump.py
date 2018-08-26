@@ -1,10 +1,8 @@
 from google.protobuf import text_format
 from pump_pb2 import Pumps
+import RPi.GPIO as GPIO
 
 class Pump(object):
-  OFF = 1
-  ON = 2
-
   def __init__(self, proto_pump):
     self.name = proto_pump.name
     self.is_running = proto_pump.is_running
@@ -13,11 +11,17 @@ class Pump(object):
   def __repr__(self):
     return self.name + " - (GPIO=" + str(self.gpio_pin) + ")"
 
+  def init(self):
+    GPIO.setup(self.gpio_pin, GPIO.OUT)
+    GPIO.output(self.gpio_pin, GPIO.HIGH)
+
   def on(self):
     self.is_running = True
+    GPIO.output(self.gpio_pin, GPIO.LOW)
 
   def off(self):
     self.is_running = False
+    GPIO.output(self.gpio_pin, GPIO.HIGH)
 
   @staticmethod
   def load_from_file(filename):

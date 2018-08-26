@@ -4,7 +4,6 @@ set -ex
 # Builds entire project and runs the server.
 
 # TODO - check that we're running in top-level dir.
-# TODO - run server.
 # TODO - kill existing server first.
 
 readonly ROOT="src"
@@ -16,7 +15,7 @@ readonly DEFAULT_CONFIG="p0_v0.pump.pbtxt"
 
 # CLEANING ===========================================
 rm -f "${GENFILES_ROOT}/*"
-rm ${ROOT}/*.pyc
+rm -f ${ROOT}/*.pyc
 touch "${GENFILES_ROOT}/__init__.py"
 
 # VIRTUALENV =========================================

@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package otto;
+
+message Pump {
+  optional string name = 1;
+  optional int32 gpio_pin_number = 2;
+}
+
+message Pumps {
+  repeated Pump pumps = 1;
+}

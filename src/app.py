@@ -45,7 +45,6 @@ if __name__ == "__main__":
       logger.debug("Running with Logging config: " + options.logging_config_file)
 
   logger = logging.getLogger()
-  logger.info("Beginning initialization...")
 
   logger.info("Loading PUMPS...")
   PUMPS = Pump.load_from_file(options.config_file)

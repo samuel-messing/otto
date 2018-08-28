@@ -30,22 +30,36 @@ def pump(name, action):
   return redirect('/', code=302)
 
 if __name__ == "__main__":
+  import logging, logging.config, yaml
+
   parser = OptionParser()
   parser.add_option("-c", "--config_file", dest="config_file",
-                    help="path to config_file for pumps", metavar="FILE")
+                    help="path to config file for pumps", metavar="FILE")
+  parser.add_option("-l", "--logging_config_file", dest="logging_config_file",
+                    help="path to config file for logging", metavar="FILE")
   (options, args) = parser.parse_args()
+
+  with open(options.logging_config_file, 'r') as logging_config:
+      logging.config.dictConfig(yaml.load(logging_config))
+      logger = logging.getLogger()
+      logger.debug("Running with Logging config: " + options.logging_config_file)
+
+  logger = logging.getLogger()
+  logger.info("Beginning initialization...")
+
+  logger.info("Loading PUMPS...")
   PUMPS = Pump.load_from_file(options.config_file)
-
   if PUMPS is None or len(PUMPS) == 0:
-    print "Failed to parse config file: " + options.config_file + " (empty?)"
+    logger.error("Failed to parse config file: " + options.config_file + " (empty?)")
     sys.exit(1)
+  logger.info("...PUMPS loaded!")
+  logger.debug("Running with PUMPS config:" + str(PUMPS))
 
-  print "INFO: Running with config:"
-  print PUMPS
-
-  print "INFO: Initiating GPIO setup..."
+  logger.info("Initiating GPIO setup...")
   GPIO.setmode(GPIO.BCM)
   [pump.init() for pump in PUMPS.values()]
+  logger.info("...GPIO setup complete!")
 
-  print "INFO Starting server..."
+  logger.info("Starting server...")
   APP.run(host="0.0.0.0")
+  logger.warn("...server shutdown!")

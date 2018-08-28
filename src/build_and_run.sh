@@ -12,6 +12,7 @@ readonly GENFILES_ROOT="${ROOT}/genfiles"
 readonly VIRTUALENV_ROOT="otto-env"
 
 readonly DEFAULT_CONFIG="p0_v0.pump.pbtxt"
+readonly DEFAULT_LOGGING_CONFIG="p0_v0.logging.config"
 
 # CLEANING ===========================================
 rm -f "${GENFILES_ROOT}/*"
@@ -37,4 +38,5 @@ protoc -I="${ROOT}/proto/" \
 
 # RUNNING SERVER =====================================
 PYTHONPATH="${GENFILES_ROOT}" python ${ROOT}/app.py \
-    --config_file="${CONFIGS_ROOT}/${DEFAULT_CONFIG}"
+    --config_file="${CONFIGS_ROOT}/${DEFAULT_CONFIG}" \
+    --logging_config_file="${CONFIGS_ROOT}/${DEFAULT_LOGGING_CONFIG}"

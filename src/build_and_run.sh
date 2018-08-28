@@ -11,8 +11,9 @@ readonly CONFIGS_ROOT="configs"
 readonly GENFILES_ROOT="${ROOT}/genfiles"
 readonly VIRTUALENV_ROOT="otto-env"
 
-readonly DEFAULT_CONFIG="p0_v0.pump.pbtxt"
-readonly DEFAULT_LOGGING_CONFIG="p0_v0.logging.config"
+# DEFAULTS ===========================================
+readonly DEFAULT_CONFIG="${CONFIGS_ROOT}/p0_v0.pump.pbtxt"
+readonly DEFAULT_LOGGING_CONFIG="${CONFIGS_ROOT}/p0_v0.logging.config"
 
 # CLEANING ===========================================
 rm -f "${GENFILES_ROOT}/*"
@@ -26,10 +27,8 @@ if [ ! -d "${VIRTUALENV_ROOT}" ]; then
 	. otto-env/bin/activate
 	pip install -r "${ROOT}/requirements.txt"
 fi
-
 # activate is idempotent
 . otto-env/bin/activate
-
 
 # BUILDING PROTOS ====================================
 protoc -I="${ROOT}/proto/" \
@@ -38,5 +37,5 @@ protoc -I="${ROOT}/proto/" \
 
 # RUNNING SERVER =====================================
 PYTHONPATH="${GENFILES_ROOT}" python ${ROOT}/app.py \
-    --config_file="${CONFIGS_ROOT}/${DEFAULT_CONFIG}" \
-    --logging_config_file="${CONFIGS_ROOT}/${DEFAULT_LOGGING_CONFIG}"
+    --config_file="${DEFAULT_CONFIG}" \
+    --logging_config_file="${DEFAULT_LOGGING_CONFIG}"

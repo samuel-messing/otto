@@ -39,7 +39,7 @@ actions {
     }
     ticks_to_count: 3
   }
-  duration_secs: 600
+  duration_secs: 300
 }
 actions {
   plant_name: "Basil"
@@ -50,7 +50,7 @@ actions {
     }
     ticks_to_count: 3
   }
-  duration_secs: 600
+  duration_secs: 300
 }
 actions {
   plant_name: "Tomato"
@@ -61,5 +61,5 @@ actions {
     }
     ticks_to_count: 3
   }
-  duration_secs: 600
+  duration_secs: 300
 }

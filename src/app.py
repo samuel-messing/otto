@@ -1,16 +1,18 @@
 from flask import Flask, redirect, render_template, send_from_directory
 from optparse import OptionParser
+from config import Config
 from pump import Pump
 import RPi.GPIO as GPIO
 import sys
 
 APP = Flask(__name__)
-# A dictionary of pump_name: Pump
-PUMPS = None
+CONFIG = None
 
 @APP.route('/')
 def index():
-  return render_template('index.html', pumps = Pump.to_proto(PUMPS.values()))
+  return render_template(
+      'index.html',
+      config = CONFIG)
 
 @APP.route('/js/<path>/')
 def js(path):
@@ -22,7 +24,7 @@ def css(path):
 
 @APP.route('/v1/pump/<name>/<action>')
 def pump(name, action):
-  pump = PUMPS[name]
+  pump = CONFIG.pumps[name]
   if pump is not None:
     pump.on() if action == 'on' else pump.off()
   else:
@@ -46,17 +48,17 @@ if __name__ == "__main__":
 
   logger = logging.getLogger()
 
-  logger.info("Loading PUMPS...")
-  PUMPS = Pump.load_from_file(options.config_file)
-  if PUMPS is None or len(PUMPS) == 0:
+  logger.info("Loading CONFIG...")
+  CONFIG = Config.load_from_file(options.config_file)
+  if CONFIG is None:
     logger.error("Failed to parse config file: " + options.config_file + " (empty?)")
     sys.exit(1)
-  logger.info("...PUMPS loaded!")
-  logger.debug("Running with PUMPS config:" + str(PUMPS))
+  logger.info("...CONFIG loaded!")
+  logger.debug("Running CONFIG:\n" + str(CONFIG))
 
   logger.info("Initiating GPIO setup...")
   GPIO.setmode(GPIO.BCM)
-  [pump.init() for pump in PUMPS.values()]
+  [pump.init() for pump in CONFIG.pumps.values()]
   logger.info("...GPIO setup complete!")
 
   logger.info("Starting server...")

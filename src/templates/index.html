@@ -7,10 +7,10 @@
     <div class="columns">
       <div class="column"></div>
       <div class="column">
-        {% for pump in pumps.pumps %}
-          <a class="pump button is-large is-fullwidth {{ "is-success" if pump.is_running else "" }}"
-             href="v1/pump/{{ pump.name }}/{{ "off" if pump.is_running else "on"}}">
-            {{ pump.name }}
+        {% for plant in config.plants.values() %}
+          <a class="pump button is-large is-fullwidth {{ "is-success" if plant.pump.is_running else "" }}"
+             href="v1/pump/{{ plant.pump.name }}/{{ "off" if plant.pump.is_running else "on"}}">
+            {{ plant.name }}
           </a><!-- .button -->
         {% endfor %}
       </div><!-- .column -->

@@ -12,7 +12,7 @@ readonly GENFILES_ROOT="${ROOT}/genfiles"
 readonly VIRTUALENV_ROOT="otto-env"
 
 # DEFAULTS ===========================================
-readonly DEFAULT_CONFIG="${CONFIGS_ROOT}/p0_v0.pump.pbtxt"
+readonly DEFAULT_CONFIG="${CONFIGS_ROOT}/p0_v0.pbtxt"
 readonly DEFAULT_LOGGING_CONFIG="${CONFIGS_ROOT}/p0_v0.logging.config"
 
 # CLEANING ===========================================

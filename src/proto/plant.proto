@@ -1,0 +1,8 @@
+syntax = "proto2";
+
+package otto;
+
+message Plant {
+  optional string name = 1;
+  optional string pump_name = 2;
+}

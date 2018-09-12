@@ -1,5 +1,4 @@
 from google.protobuf import text_format
-from pump_pb2 import Pumps
 import RPi.GPIO as GPIO
 
 class Pump(object):
@@ -22,19 +21,6 @@ class Pump(object):
   def off(self):
     self.is_running = False
     GPIO.output(self.gpio_pin, GPIO.HIGH)
-
-  @staticmethod
-  def load_from_file(filename):
-    pumps = Pumps()
-    with open(filename, 'r') as f:
-      content = f.read()
-      text_format.Merge(content, pumps)
-      return Pump.load_from_proto(pumps)
-    return None
-
-  @staticmethod
-  def load_from_proto(proto_pumps):
-    return { proto_pump.name: Pump(proto_pump) for proto_pump in proto_pumps.pumps }
 
   @staticmethod
   def to_proto(pumps):

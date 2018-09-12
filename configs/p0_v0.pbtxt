@@ -1,0 +1,42 @@
+pumps {
+  name: "bottom_right"
+  gpio_pin_number: 14
+}
+pumps {
+  name: "bottom_left"
+  gpio_pin_number: 15
+}
+pumps {
+  name: "top_right"
+  gpio_pin_number: 18
+}
+pumps {
+  name: "top_left"
+  gpio_pin_number: 23
+}
+plants {
+  name: "Thyme"
+  pump_name: "top_right"
+}
+plants {
+  name: "Arugula"
+  pump_name: "top_left"
+}
+plants {
+  name: "Basil"
+  pump_name: "bottom_right"
+}
+plants {
+  name: "Tomato"
+  pump_name: "bottom_left"
+}
+actions {
+  plant_name: "Basil"
+  action: WATER
+  schedule {
+    daily {
+      hour_of_day: 9
+    }
+    ticks_to_count: 3
+  }
+}

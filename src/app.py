@@ -2,6 +2,7 @@ from flask import Flask, redirect, render_template, send_from_directory
 from optparse import OptionParser
 from pump import Pump
 import RPi.GPIO as GPIO
+import atexit
 import config
 import sys
 import threading
@@ -38,6 +39,10 @@ def run_scheduler():
     schedule.run_pending()
     time.sleep(1)
 
+def exit_handler():
+  GPIO.cleanup()
+
+
 if __name__ == "__main__":
   import logging, logging.config, yaml
 
@@ -65,6 +70,7 @@ if __name__ == "__main__":
 
   logger.info("Initiating GPIO setup...")
   GPIO.setmode(GPIO.BCM)
+  atexit.register(exit_handler)
   [pump.init() for pump in config.CONFIG.pumps.values()]
   logger.info("...GPIO setup complete!")
 

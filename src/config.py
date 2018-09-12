@@ -1,14 +1,20 @@
-from google.protobuf import text_format
+from action import Action
 from config_pb2 import Config as PbConfig
+from google.protobuf import text_format
+from action import Action
 from plant import Plant
 from pump import Pump
 import logging
 import sys
 
 class Config(object):
-  def __init__(self, plants):
+  def __init__(self, plants, pumps, actions):
+    # List, Action
+    self.actions = actions
+    # Dictionary, plant_name: Plant
     self.plants = plants
-    self.pumps = {pump.name: pump for pump in [plant.pump for plant in plants.values()]}
+    # Dictionary, pump_name: Pump
+    self.pumps = pumps
     pass
 
   def __repr__(self):
@@ -24,14 +30,14 @@ class Config(object):
         logger.error("No pump found with name: " + proto_plant.pump_name)
         sys.exit(1)
       plants[proto_plant.name] = Plant(proto_plant, pumps[proto_plant.pump_name])
-    return Config(plants)
+    actions = [Action(action) for action in proto.actions]
+    return Config(plants, pumps, actions)
 
-  @staticmethod
-  def load_from_file(filename):
-    config = PbConfig()
-    with open(filename, 'r') as f:
-      content = f.read()
-      text_format.Merge(content, config)
-      return Config.load_from_proto(config)
-    return None
+def load_from_file(filename):
+  config = PbConfig()
+  with open(filename, 'r') as f:
+    content = f.read()
+    text_format.Merge(content, config)
+    global CONFIG
+    CONFIG = Config.load_from_proto(config)
 

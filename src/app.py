@@ -1,18 +1,19 @@
 from flask import Flask, redirect, render_template, send_from_directory
 from optparse import OptionParser
-from config import Config
 from pump import Pump
 import RPi.GPIO as GPIO
+import config
 import sys
+import threading
+import time
 
 APP = Flask(__name__)
-CONFIG = None
 
 @APP.route('/')
 def index():
   return render_template(
       'index.html',
-      config = CONFIG)
+      config = config.CONFIG)
 
 @APP.route('/js/<path>/')
 def js(path):
@@ -24,12 +25,18 @@ def css(path):
 
 @APP.route('/v1/pump/<name>/<action>')
 def pump(name, action):
-  pump = CONFIG.pumps[name]
+  pump = config.CONFIG.pumps[name]
   if pump is not None:
     pump.on() if action == 'on' else pump.off()
   else:
     print "ERROR: No pump with name " + name + " exists."
   return redirect('/', code=302)
+
+def run_scheduler():
+  import schedule
+  while True:
+    schedule.run_pending()
+    time.sleep(1)
 
 if __name__ == "__main__":
   import logging, logging.config, yaml
@@ -49,18 +56,29 @@ if __name__ == "__main__":
   logger = logging.getLogger()
 
   logger.info("Loading CONFIG...")
-  CONFIG = Config.load_from_file(options.config_file)
-  if CONFIG is None:
+  config.load_from_file(options.config_file)
+  if config.CONFIG is None:
     logger.error("Failed to parse config file: " + options.config_file + " (empty?)")
     sys.exit(1)
   logger.info("...CONFIG loaded!")
-  logger.debug("Running CONFIG:\n" + str(CONFIG))
+  logger.debug("Running CONFIG:\n" + str(config.CONFIG))
 
   logger.info("Initiating GPIO setup...")
   GPIO.setmode(GPIO.BCM)
-  [pump.init() for pump in CONFIG.pumps.values()]
+  [pump.init() for pump in config.CONFIG.pumps.values()]
   logger.info("...GPIO setup complete!")
+
+  logger.debug("Scheduling actions...")
+  for action in config.CONFIG.actions:
+    action.schedule()
+  logger.debug("...actions scheduled!")
+
+  logger.info("Starting scheduler executor thread...")
+  scheduler = threading.Thread(target=run_scheduler)
+  scheduler.daemon = True
+  scheduler.start()
 
   logger.info("Starting server...")
   APP.run(host="0.0.0.0")
   logger.warn("...server shutdown!")
+

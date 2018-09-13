@@ -35,7 +35,7 @@ actions {
   action: WATER
   tick {
     daily {
-      hour_of_day: 9
+      hour_of_day: 8
     }
     ticks_to_count: 3
   }
@@ -46,7 +46,7 @@ actions {
   action: WATER
   tick {
     daily {
-      hour_of_day: 9
+      hour_of_day: 8
     }
     ticks_to_count: 3
   }
@@ -57,7 +57,7 @@ actions {
   action: WATER
   tick {
     daily {
-      hour_of_day: 9
+      hour_of_day: 8
     }
     ticks_to_count: 3
   }

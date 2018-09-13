@@ -39,7 +39,7 @@ def run_scheduler():
     schedule.run_pending()
     time.sleep(1)
 
-def exit_handler():
+def gpio_cleanup():
   GPIO.cleanup()
 
 
@@ -65,24 +65,25 @@ if __name__ == "__main__":
   if config.CONFIG is None:
     logger.error("Failed to parse config file: " + options.config_file + " (empty?)")
     sys.exit(1)
-  logger.info("...CONFIG loaded!")
-  logger.debug("Running CONFIG:\n" + str(config.CONFIG))
+  logger.debug("Loaded CONFIG:\n" + str(config.CONFIG))
+  logger.info("...done!")
 
   logger.info("Initiating GPIO setup...")
   GPIO.setmode(GPIO.BCM)
-  atexit.register(exit_handler)
+  atexit.register(gpio_cleanup)
   [pump.init() for pump in config.CONFIG.pumps.values()]
-  logger.info("...GPIO setup complete!")
+  logger.info("...done!")
 
   logger.debug("Scheduling actions...")
   for action in config.CONFIG.actions:
     action.schedule()
-  logger.debug("...actions scheduled!")
+  logger.debug("...done!")
 
   logger.info("Starting scheduler executor thread...")
   scheduler = threading.Thread(target=run_scheduler)
   scheduler.daemon = True
   scheduler.start()
+  logger.debug("...done!")
 
   logger.info("Starting server...")
   APP.run(host="0.0.0.0")

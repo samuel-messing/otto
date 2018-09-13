@@ -3,13 +3,9 @@ syntax = "proto2";
 package otto;
 
 message Tick {
-  message Hourly {
-    optional int32 minute = 1;
-  }
+  message Hourly { optional int32 minute = 1; }
 
-  message Daily {
-    optional int32 hour_of_day = 1;
-  }
+  message Daily { optional int32 hour_of_day = 1; }
 
   message Weekly {
     enum Day {
@@ -19,7 +15,7 @@ message Tick {
       THURSDAY = 3;
       FRIDAY = 4;
       SATURDAY = 5;
-      SUNDAY = 6; 
+      SUNDAY = 6;
     }
     optional Day day_of_week = 1;
   }

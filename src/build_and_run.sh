@@ -30,6 +30,10 @@ fi
 # activate is idempotent
 . otto-env/bin/activate
 
+# FORMATTING CODE ====================================
+autopep8 --in-place --recursive src/
+clang-format -i src/proto/*
+
 # BUILDING PROTOS ====================================
 protoc -I="${ROOT}/proto/" \
 	--python_out="${ROOT}/genfiles/" \

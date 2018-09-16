@@ -31,8 +31,10 @@ fi
 . otto-env/bin/activate
 
 # FORMATTING CODE ====================================
-autopep8 --in-place --recursive src/
-clang-format -i src/proto/*
+if [[ ! -z "$(git diff --name-only)" ]]; then
+  autopep8 --in-place --recursive src/
+  clang-format -i src/proto/*
+fi
 
 # BUILDING PROTOS ====================================
 protoc -I="${ROOT}/proto/" \

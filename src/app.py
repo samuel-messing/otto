@@ -1,6 +1,5 @@
 from flask import Flask, redirect, render_template, send_from_directory
 from optparse import OptionParser
-from pump import Pump
 import RPi.GPIO as GPIO
 import atexit
 import config

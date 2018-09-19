@@ -70,6 +70,6 @@ function finish {
 }
 trap finish EXIT
 echo "${START_SERVER______}"
-PYTHONPATH="${GENFILES_ROOT}" python ${ROOT}/app.py \
+PYTHONPATH="${GENFILES_ROOT}" python3 ${ROOT}/app.py \
     --config_file="${DEFAULT_CONFIG}" \
     --logging_config_file="${DEFAULT_LOGGING_CONFIG}"

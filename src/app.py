@@ -1,3 +1,4 @@
+from db import Db
 from flask import Flask, redirect, render_template, send_from_directory
 from optparse import OptionParser
 import RPi.GPIO as GPIO
@@ -55,9 +56,11 @@ if __name__ == "__main__":
 
     parser = OptionParser()
     parser.add_option("-c", "--config_file", dest="config_file",
-                      help="path to config file for pumps", metavar="FILE")
+                      help="path to config file", metavar="FILE")
     parser.add_option("-l", "--logging_config_file", dest="logging_config_file",
-                      help="path to config file for logging", metavar="FILE")
+                      help="path to logging config file", metavar="FILE")
+    parser.add_option("-d", "--db_file", dest="db_file",
+                      help="path to database file", metavar="FILE")
     (options, args) = parser.parse_args()
 
     with open(options.logging_config_file, 'r') as logging_config:
@@ -68,8 +71,15 @@ if __name__ == "__main__":
 
     logger = logging.getLogger()
 
+    logger.info("Initializing DB...")
+    if options.db_file is None:
+        logger.error("Need to specify db file!")
+        sys.exit(1)
+    db = Db(options.db_file)
+    logger.info("...done!")
+
     logger.info("Loading CONFIG...")
-    config.load_from_file(options.config_file)
+    config.load_from_file(options.config_file, db)
     if config.CONFIG is None:
         logger.error("Failed to parse config file: " +
                      options.config_file + " (empty?)")

@@ -8,6 +8,7 @@ set -e
 
 readonly ROOT="src"
 readonly CONFIGS_ROOT="configs"
+readonly DB_ROOT="db"
 readonly GENFILES_ROOT="${ROOT}/genfiles"
 readonly VIRTUALENV_ROOT="otto-env"
 readonly CLEANING__________="Cleaning................."
@@ -21,6 +22,7 @@ readonly DONE="...done!"
 
 # DEFAULTS ===========================================
 readonly DEFAULT_CONFIG="${CONFIGS_ROOT}/p0_v0.pbtxt"
+readonly DEFAULT_DB_PATH="${DB_ROOT}/otto.db"
 readonly DEFAULT_LOGGING_CONFIG="${CONFIGS_ROOT}/p0_v0.logging.config"
 
 # CLEANING ===========================================
@@ -72,4 +74,5 @@ trap finish EXIT
 echo "${START_SERVER______}"
 PYTHONPATH="${GENFILES_ROOT}" python3 ${ROOT}/app.py \
     --config_file="${DEFAULT_CONFIG}" \
+    --db_file="${DEFAULT_DB_PATH}" \
     --logging_config_file="${DEFAULT_LOGGING_CONFIG}"

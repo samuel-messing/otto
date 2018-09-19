@@ -9,22 +9,22 @@ import sys
 
 
 class Config(object):
-    def __init__(self, plants, pumps, actions):
+    def __init__(self, plants, pumps, actions, db):
         # List, Action
         self.actions = actions
         # Dictionary, plant_name: Plant
         self.plants = plants
         # Dictionary, pump_name: Pump
         self.pumps = pumps
-        pass
+        self.db = db
 
     def __repr__(self):
         return '\n'.join([str(plant) for plant in self.plants.values()])
 
     @staticmethod
-    def load_from_proto(proto):
+    def load_from_proto(proto, db):
         logger = logging.getLogger()
-        pumps = {proto_pump.name: Pump(proto_pump)
+        pumps = {proto_pump.name: Pump(proto_pump, db)
                  for proto_pump in proto.pumps}
         plants = {}
         for proto_plant in proto.plants:
@@ -35,13 +35,13 @@ class Config(object):
             plants[proto_plant.name] = Plant(
                 proto_plant, pumps[proto_plant.pump_name])
         actions = [Action(action) for action in proto.actions]
-        return Config(plants, pumps, actions)
+        return Config(plants, pumps, actions, db)
 
 
-def load_from_file(filename):
+def load_from_file(filename, db):
     config = PbConfig()
     with open(filename, 'r') as f:
         content = f.read()
         text_format.Merge(content, config)
         global CONFIG
-        CONFIG = Config.load_from_proto(config)
+        CONFIG = Config.load_from_proto(config, db)

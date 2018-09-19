@@ -3,7 +3,8 @@ import RPi.GPIO as GPIO
 
 
 class Pump(object):
-    def __init__(self, proto_pump):
+    def __init__(self, proto_pump, db):
+        self.db = db
         self.name = proto_pump.name
         self.is_running = proto_pump.is_running
         self.gpio_pin = proto_pump.gpio_pin_number

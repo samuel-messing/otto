@@ -29,7 +29,7 @@ readonly DEFAULT_LOGGING_CONFIG="${CONFIGS_ROOT}/p0_v0.logging.config"
 # CLEANING ===========================================
 echo -n "${CLEANING__________}"
 rm -f "${GENFILES_ROOT}/*"
-rm -f ${ROOT}/*.pyc
+rm -f "${ROOT}/*.pyc"
 touch "${GENFILES_ROOT}/__init__.py"
 echo "${DONE}"
 
@@ -43,7 +43,6 @@ if [ ! -d "${VIRTUALENV_ROOT}" ]; then
 	pip install -r "${ROOT}/requirements.txt"
 	echo "${DONE}"
 fi
-# activate is idempotent
 function finish {
 	echo "Server killed!"
 	echo -n "${EXIT_VIRTUALENV___}"
@@ -53,6 +52,7 @@ function finish {
 }
 trap finish EXIT
 echo -n "${SOURCE_VIRTUALENV_}"
+# activate is idempotent
 . otto-env/bin/activate
 echo "${DONE}"
 

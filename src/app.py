@@ -33,7 +33,7 @@ def pump(name, action):
     if pump is not None:
         pump.on() if action == 'on' else pump.off()
     else:
-        print "ERROR: No pump with name " + name + " exists."
+        print("ERROR: No pump with name", name, "exists.", sep=" ")
     return redirect('/', code=302)
 
 

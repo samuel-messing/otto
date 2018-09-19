@@ -33,8 +33,8 @@ echo "${DONE}"
 # VIRTUALENV =========================================
 if [ ! -d "${VIRTUALENV_ROOT}" ]; then
 	echo "No virtualenv found at ${VIRTUALENV_ROOT}!"
-	echo -n "${INSTALL_VIRTUALENV}"
-	virtualenv otto-env
+	echo "${INSTALL_VIRTUALENV}"
+	virtualenv -p python3 otto-env
 	# activate is idempotent
 	. otto-env/bin/activate
 	pip install -r "${ROOT}/requirements.txt"
@@ -47,14 +47,14 @@ echo "${DONE}"
 
 # FORMATTING CODE ====================================
 if [[ ! -z "$(git diff --name-only | grep .py)" ]]; then
-  echo -n "${FORMAT_PYTHON_____}"
-  autopep8 --in-place --recursive src/
-  echo "${DONE}"
+	echo -n "${FORMAT_PYTHON_____}"
+	autopep8 --in-place --recursive src/
+	echo "${DONE}"
 fi
 if [[ ! -z "$(git diff --name-only | grep .proto)" ]]; then
-  echo -n "${FORMAT_PROTOS_____}"
-  clang-format -i src/proto/*
-  echo "${DONE}"
+	echo -n "${FORMAT_PROTOS_____}"
+	clang-format -i src/proto/*
+	echo "${DONE}"
 fi
 
 # BUILDING PROTOS ====================================
@@ -65,6 +65,10 @@ protoc -I="${ROOT}/proto/" \
 echo "${DONE}"
 
 # RUNNING SERVER =====================================
+function finish {
+	deactivate
+}
+trap finish EXIT
 echo "${START_SERVER______}"
 PYTHONPATH="${GENFILES_ROOT}" python ${ROOT}/app.py \
     --config_file="${DEFAULT_CONFIG}" \

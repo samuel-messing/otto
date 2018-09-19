@@ -1,5 +1,5 @@
 pumps {
-  name: "bottom_right"
+  name: "middle_right"
   gpio_pin_number: 14
 }
 pumps {
@@ -24,7 +24,7 @@ plants {
 }
 plants {
   name: "Basil"
-  pump_name: "bottom_right"
+  pump_name: "middle_right"
 }
 plants {
   name: "Tomato"

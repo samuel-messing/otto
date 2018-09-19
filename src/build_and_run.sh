@@ -18,6 +18,7 @@ readonly FORMAT_PYTHON_____="Formatting python........"
 readonly FORMAT_PROTOS_____="Formatting protos........"
 readonly BUILD_PROTOS______="Building protos.........."
 readonly START_SERVER______="Starting server.........."
+readonly EXIT_VIRTUALENV___="Exiting virtualenv......."
 readonly DONE="...done!"
 
 # DEFAULTS ===========================================
@@ -43,6 +44,14 @@ if [ ! -d "${VIRTUALENV_ROOT}" ]; then
 	echo "${DONE}"
 fi
 # activate is idempotent
+function finish {
+	echo "Server killed!"
+	echo -n "${EXIT_VIRTUALENV___}"
+	deactivate
+	echo "${DONE}"
+	echo "\"This is Otto, signing off!\" ~ Otto"
+}
+trap finish EXIT
 echo -n "${SOURCE_VIRTUALENV_}"
 . otto-env/bin/activate
 echo "${DONE}"
@@ -67,10 +76,6 @@ protoc -I="${ROOT}/proto/" \
 echo "${DONE}"
 
 # RUNNING SERVER =====================================
-function finish {
-	deactivate
-}
-trap finish EXIT
 echo "${START_SERVER______}"
 PYTHONPATH="${GENFILES_ROOT}" python3 ${ROOT}/app.py \
     --config_file="${DEFAULT_CONFIG}" \

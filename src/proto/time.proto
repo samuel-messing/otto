@@ -3,9 +3,13 @@ syntax = "proto2";
 package otto;
 
 message Tick {
-  message Hourly { optional int32 minute = 1; }
+  message Hourly { optional int32 hours_to_count = 1; }
 
-  message Daily { optional int32 hour_of_day = 1; }
+  message Daily {
+    optional int32 hour = 1;
+    optional int32 min = 2;
+    optional int32 days_to_count = 3;
+  }
 
   message Weekly {
     enum Day {
@@ -17,7 +21,9 @@ message Tick {
       SATURDAY = 5;
       SUNDAY = 6;
     }
-    optional Day day_of_week = 1;
+    repeated Day day_of_week = 1;
+    optional int32 hour = 2;
+    optional int32 min = 3;
   }
 
   oneof tick {
@@ -25,6 +31,4 @@ message Tick {
     Daily daily = 2;
     Weekly weekly = 3;
   }
-  // I.e., for Hourly, if ticks_to_count = 2, then its every 2 hours.
-  optional int32 ticks_to_count = 4;
 }

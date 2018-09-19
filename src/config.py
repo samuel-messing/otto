@@ -41,7 +41,9 @@ class Config(object):
 def load_from_file(filename, db):
     config = PbConfig()
     with open(filename, 'r') as f:
+        logger = logging.getLogger()
         content = f.read()
+        logger.debug("Loading config: " + content)
         text_format.Merge(content, config)
         global CONFIG
         CONFIG = Config.load_from_proto(config, db)

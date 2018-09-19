@@ -19,10 +19,6 @@ plants {
   pump_name: "top_right"
 }
 plants {
-  name: "Arugula"
-  pump_name: "top_left"
-}
-plants {
   name: "Basil"
   pump_name: "middle_right"
 }
@@ -34,10 +30,13 @@ actions {
   plant_name: "Thyme"
   action: WATER
   tick {
-    daily {
-      hour_of_day: 8
+    weekly {
+      day_of_week: TUESDAY
+      day_of_week: THURSDAY
+      day_of_week: SATURDAY
+      hour: 8
+      min: 30
     }
-    ticks_to_count: 3
   }
   duration_secs: 300
 }
@@ -45,10 +44,13 @@ actions {
   plant_name: "Basil"
   action: WATER
   tick {
-    daily {
-      hour_of_day: 8
+    weekly {
+      day_of_week: TUESDAY
+      day_of_week: THURSDAY
+      day_of_week: SUNDAY
+      hour: 8
+      min: 30
     }
-    ticks_to_count: 3
   }
   duration_secs: 300
 }
@@ -56,10 +58,13 @@ actions {
   plant_name: "Tomato"
   action: WATER
   tick {
-    daily {
-      hour_of_day: 8
+    weekly {
+      day_of_week: MONDAY
+      day_of_week: WEDNESDAY
+      day_of_week: FRIDAY
+      hour: 8
+      min: 30
     }
-    ticks_to_count: 3
   }
   duration_secs: 300
 }

@@ -84,7 +84,6 @@ if __name__ == "__main__":
         logger.error("Failed to parse config file: " +
                      options.config_file + " (empty?)")
         sys.exit(1)
-    logger.debug("Loaded CONFIG:\n" + str(config.CONFIG))
     logger.info("...done!")
 
     logger.info("Initiating GPIO setup...")

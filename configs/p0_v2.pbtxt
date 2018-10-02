@@ -1,0 +1,98 @@
+pumps {
+  name: "middle_right"
+  gpio_pin_number: 14
+}
+pumps {
+  name: "bottom_left"
+  gpio_pin_number: 15
+}
+pumps {
+  name: "top_right"
+  gpio_pin_number: 18
+}
+pumps {
+  name: "middle_left"
+  gpio_pin_number: 23
+}
+plants {
+  name: "Thyme & Cilantro"
+  pump_name: "top_right"
+}
+plants {
+  name: "Basil"
+  pump_name: "middle_right"
+}
+plants {
+  name: "Tomato & Cilantro"
+  pump_name: "bottom_left"
+}
+plants {
+  name: "Arugula"
+  pump_name: "middle_left"
+}
+actions {
+  plant_name: "Thyme & Cilantro"
+  action: WATER
+  tick {
+    weekly {
+      day_of_week: MONDAY
+      day_of_week: TUESDAY
+      day_of_week: THURSDAY
+      day_of_week: THURSDAY
+      day_of_week: FRIDAY
+      day_of_week: SATURDAY
+      hour: 8
+      min: 30
+    }
+  }
+  duration_secs: 300
+}
+actions {
+  plant_name: "Basil"
+  action: WATER
+  tick {
+    weekly {
+      day_of_week: TUESDAY
+      day_of_week: THURSDAY
+      day_of_week: SUNDAY
+      hour: 8
+      min: 30
+    }
+  }
+  duration_secs: 300
+}
+actions {
+  plant_name: "Tomato & Cilantro"
+  action: WATER
+  tick {
+    weekly {
+      day_of_week: MONDAY
+      day_of_week: TUESDAY
+      day_of_week: WEDNESDAY
+      day_of_week: THURSDAY
+      day_of_week: FRIDAY
+      day_of_week: SUNDAY
+      hour: 8
+      min: 30
+    }
+  }
+  duration_secs: 300
+}
+actions {
+  plant_name: "Arugula"
+  action: WATER
+  tick {
+    weekly {
+      day_of_week: MONDAY
+      day_of_week: TUESDAY
+      day_of_week: WEDNESDAY
+      day_of_week: THURSDAY
+      day_of_week: FRIDAY
+      day_of_week: SATURDAY
+      day_of_week: SUNDAY
+      hour: 8
+      min: 30
+    }
+  }
+  duration_secs: 180
+}

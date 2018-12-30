@@ -1,0 +1,51 @@
+pumps {
+  name: "middle_right"
+  gpio_pin_number: 14
+}
+pumps {
+  name: "bottom_left"
+  gpio_pin_number: 15
+}
+pumps {
+  name: "top_right"
+  gpio_pin_number: 18
+}
+pumps {
+  name: "middle_left"
+  gpio_pin_number: 23
+}
+plants {
+  name: "Thyme"
+  pump_name: "middle_right"
+}
+plants {
+  name: "Arugula"
+  pump_name: "middle_left"
+}
+actions {
+  plant_name: "Thyme"
+  action: WATER
+  tick {
+    weekly {
+      day_of_week: MONDAY
+      day_of_week: THURSDAY
+      hour: 8
+      min: 30
+    }
+  }
+  duration_secs: 400
+}
+actions {
+  plant_name: "Arugula"
+  action: WATER
+  tick {
+    weekly {
+      day_of_week: MONDAY
+      day_of_week: THURSDAY
+      day_of_week: SUNDAY
+      hour: 8
+      min: 30
+    }
+  }
+  duration_secs: 300
+}

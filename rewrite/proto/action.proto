@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+import "time.proto";
+
+package otto;
+
+enum PrimitiveAction {
+  UNKNOWN = 0;
+  WATER = 1;
+}
+
+message Action {
+  optional string plant_name = 1;
+  optional PrimitiveAction action = 2;
+  optional Tick tick = 3;
+  optional int32 duration_secs = 4;
+}

@@ -1,5 +1,5 @@
 pumps {
-  name: "middle_right"
+  name: "top_right"
   gpio_pin_number: 14
 }
 pumps {
@@ -7,20 +7,28 @@ pumps {
   gpio_pin_number: 15
 }
 pumps {
-  name: "top_right"
+  name: "bottom_right"
   gpio_pin_number: 18
 }
 pumps {
-  name: "middle_left"
+  name: "top_left"
   gpio_pin_number: 23
 }
 plants {
   name: "Thyme"
-  pump_name: "middle_right"
+  pump_name: "top_right"
 }
 plants {
-  name: "Arugula"
-  pump_name: "middle_left"
+  name: "Mint"
+  pump_name: "top_left"
+}
+plants {
+  name: "Cilantro"
+  pump_name: "bottom_left"
+}
+plants {
+  name: "Basil"
+  pump_name: "bottom_right"
 }
 actions {
   plant_name: "Thyme"

@@ -31,6 +31,8 @@ def css(path):
 @APP.route('/v1/pump/<name>/<action>')
 def pump(name, action):
     pump = config.CONFIG.pumps[name]
+    if (action == 'state'):
+        return pump.state()
     if pump is not None:
         pump.on() if action == 'on' else pump.off()
     else:
@@ -43,10 +45,6 @@ def run_scheduler():
     while True:
         schedule.run_pending()
         time.sleep(1)
-
-
-def gpio_cleanup():
-    GPIO.cleanup()
 
 
 if __name__ == "__main__":
@@ -87,9 +85,6 @@ if __name__ == "__main__":
     logger.info("...done!")
 
     logger.info("Initiating GPIO setup...")
-    GPIO.setmode(GPIO.BCM)
-    atexit.register(gpio_cleanup)
-    [pump.init() for pump in config.CONFIG.pumps.values()]
     logger.info("...done!")
 
     logger.debug("Scheduling actions...")

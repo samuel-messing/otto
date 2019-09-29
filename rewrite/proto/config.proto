@@ -3,7 +3,6 @@ syntax = "proto2";
 import "action.proto";
 import "plant.proto";
 import "pump.proto";
-import "fan.proto";
 
 package otto;
 
@@ -11,5 +10,4 @@ message Config {
   repeated Plant plants = 1;
   repeated Pump pumps = 2;
   repeated Action actions = 3;
-  repeated Fan fans = 4;
 }

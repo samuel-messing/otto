@@ -1,28 +1,27 @@
 from google.protobuf import text_format
-import RPi.GPIO as GPIO
 
 
 class Pump(object):
-    def __init__(self, proto_pump, db):
+    def __init__(self, proto_pump, db, i2c):
         self.db = db
         self.name = proto_pump.name
         self.is_running = proto_pump.is_running
-        self.gpio_pin = proto_pump.gpio_pin_number
+        self.i2c = i2c
+        self.i2c_pin_number = proto_pump.i2c_pin_number
 
     def __repr__(self):
-        return self.name + " - (GPIO=" + str(self.gpio_pin) + ")"
-
-    def init(self):
-        GPIO.setup(self.gpio_pin, GPIO.OUT)
-        GPIO.output(self.gpio_pin, GPIO.HIGH)
+        return self.name + " - (i2c=" + str(self.i2c_pin_number) + ")"
 
     def on(self):
         self.is_running = True
-        GPIO.output(self.gpio_pin, GPIO.LOW)
+        self.i2c.on(self.i2c_pin_number)
 
     def off(self):
         self.is_running = False
-        GPIO.output(self.gpio_pin, GPIO.HIGH)
+        self.i2c.off(self.i2c_pin_number)
+
+    def state(self):
+        return 'on' if self.is_running else 'off'
 
     @staticmethod
     def to_proto(pumps):

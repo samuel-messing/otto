@@ -1,0 +1,48 @@
+pumps {
+  name: "middle_left"
+  i2c_pin_number: 0
+}
+pumps {
+  name: "middle_right"
+  i2c_pin_number: 1
+}
+pumps {
+  name: "bottom_left"
+  i2c_pin_number: 2
+}
+pumps {
+  name: "bottom_right"
+  i2c_pin_number: 3
+}
+pumps {
+  name: "bottom"
+  i2c_pin_number: 4
+}
+pumps {
+  name: "middle"
+  i2c_pin_number: 5
+}
+plants {
+  name: "Rosemary"
+  pump_name: "middle_right"
+}
+plants {
+  name: "Mint"
+  pump_name: "middle_left"
+}
+plants {
+  name: "Thyme"
+  pump_name: "bottom_left"
+}
+plants {
+  name: "Cilantro"
+  pump_name: "bottom_right"
+}
+plants {
+  name: "Middle fan"
+  pump_name: "middle"
+}
+plants {
+  name: "Bottom fan"
+  pump_name: "bottom"
+}

@@ -1,0 +1,34 @@
+syntax = "proto2";
+
+package otto;
+
+message Tick {
+  message Hourly { optional int32 hours_to_count = 1; }
+
+  message Daily {
+    optional int32 hour = 1;
+    optional int32 min = 2;
+    optional int32 days_to_count = 3;
+  }
+
+  message Weekly {
+    enum Day {
+      MONDAY = 0;
+      TUESDAY = 1;
+      WEDNESDAY = 2;
+      THURSDAY = 3;
+      FRIDAY = 4;
+      SATURDAY = 5;
+      SUNDAY = 6;
+    }
+    repeated Day day_of_week = 1;
+    optional int32 hour = 2;
+    optional int32 min = 3;
+  }
+
+  oneof tick {
+    Hourly hourly = 1;
+    Daily daily = 2;
+    Weekly weekly = 3;
+  }
+}

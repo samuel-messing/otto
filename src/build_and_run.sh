@@ -6,6 +6,26 @@ set -e
 # TODO - check that we're running in top-level dir.
 # TODO - kill existing server first.
 
+function install_command() {
+  if [[ ! $(command -v $1) ]]; then
+    echo "[one-time] Installing $1";
+    sudo apt-get install $2
+  fi
+}
+
+install_command 'protoc' 'protobuf-compiler'
+install_command 'virtualenv' 'virtualenv'
+
+function make_dir() {
+  if [[ ! -d $1 ]]; then
+    echo "[one-time] Creating local $1/ directory";
+    mkdir $1
+  fi
+}
+
+make_dir 'db'
+make_dir 'logs'
+
 readonly ROOT="src"
 readonly CONFIGS_ROOT="configs"
 readonly DB_ROOT="db"

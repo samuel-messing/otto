@@ -20,6 +20,8 @@ will fail if the computer is not connected to an i2c controller.
 
 # Dependencies
 
+* [i2c Support](https://www.waveshare.com/wiki/Raspberry_Pi_Tutorial_Series:_I2C)
+
 * `virtualenv`:
 ```
 sudo apt-get install virtualenv
@@ -29,5 +31,11 @@ sudo apt-get install virtualenv
 ```
 sudo apt install protobuf-compiler
 ```
+
+* `i2c-tools`:
+```
+sudo apt install i2c-tools
+```
+
 
 # TODO(sam): Description & images

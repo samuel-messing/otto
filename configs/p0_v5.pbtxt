@@ -1,0 +1,78 @@
+pumps {
+  name: "left"
+  i2c_pin_number: 0
+}
+pumps {
+  name: "middle"
+  i2c_pin_number: 1
+}
+pumps {
+  name: "right"
+  i2c_pin_number: 2
+}
+pumps {
+  name: "unused_3"
+  i2c_pin_number: 3
+}
+pumps {
+  name: "unused_4"
+  i2c_pin_number: 4
+}
+pumps {
+  name: "unusued_5"
+  i2c_pin_number: 5
+}
+plants {
+  name: "Sweet Cherry 100 (left)"
+  pump_name: "left"
+}
+plants {
+  name: "Grape (middle)"
+  pump_name: "middle"
+}
+plants {
+  name: "Sweet Cherry 100 (right)"
+  pump_name: "right"
+}
+actions {
+  plant_name: "Sweet Cherry 100 (left)"
+  action: WATER
+  tick {
+    weekly {
+      day_of_week: MONDAY
+      day_of_week: THURSDAY
+      day_of_week: SATURDAY
+      hour: 8
+      min: 30
+    }
+  }
+  duration_secs: 300
+}
+actions {
+  plant_name: "Sweet Cherry 100 (right)"
+  action: WATER
+  tick {
+    weekly {
+      day_of_week: MONDAY
+      day_of_week: THURSDAY
+      day_of_week: SATURDAY
+      hour: 8
+      min: 30
+    }
+  }
+  duration_secs: 300
+}
+actions {
+  plant_name: "Grape (middle)"
+  action: WATER
+  tick {
+    weekly {
+      day_of_week: MONDAY
+      day_of_week: THURSDAY
+      day_of_week: SATURDAY
+      hour: 8
+      min: 30
+    }
+  }
+  duration_secs: 300
+}

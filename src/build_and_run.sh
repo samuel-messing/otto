@@ -42,7 +42,7 @@ readonly EXIT_VIRTUALENV___="Exiting virtualenv......."
 readonly DONE="...done!"
 
 # DEFAULTS ===========================================
-readonly DEFAULT_CONFIG="${CONFIGS_ROOT}/p0_v4.pbtxt"
+readonly DEFAULT_CONFIG="${CONFIGS_ROOT}/p0_v5.pbtxt"
 readonly DEFAULT_DB_PATH="${DB_ROOT}/otto.db"
 readonly DEFAULT_LOGGING_CONFIG="${CONFIGS_ROOT}/p0_v0.logging.config"
 

@@ -1,5 +1,5 @@
 pumps {
-  name: "left"
+  name: "right"
   i2c_pin_number: 0
 }
 pumps {
@@ -7,7 +7,7 @@ pumps {
   i2c_pin_number: 1
 }
 pumps {
-  name: "right"
+  name: "left"
   i2c_pin_number: 2
 }
 pumps {
@@ -40,7 +40,7 @@ actions {
   tick {
     weekly {
       day_of_week: MONDAY
-      day_of_week: THURSDAY
+      day_of_week: WEDNESDAY
       day_of_week: SATURDAY
       hour: 8
       min: 30
@@ -54,7 +54,7 @@ actions {
   tick {
     weekly {
       day_of_week: MONDAY
-      day_of_week: THURSDAY
+      day_of_week: WEDNESDAY
       day_of_week: SATURDAY
       hour: 8
       min: 30
@@ -68,7 +68,7 @@ actions {
   tick {
     weekly {
       day_of_week: MONDAY
-      day_of_week: THURSDAY
+      day_of_week: WEDNESDAY
       day_of_week: SATURDAY
       hour: 8
       min: 30

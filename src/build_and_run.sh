@@ -26,6 +26,7 @@ function make_dir() {
 make_dir 'db'
 make_dir 'logs'
 
+readonly REPO_LOCATION="/home/pi/otto"
 readonly ROOT="src"
 readonly CONFIGS_ROOT="configs"
 readonly DB_ROOT="db"
@@ -45,6 +46,9 @@ readonly DONE="...done!"
 readonly DEFAULT_CONFIG="${CONFIGS_ROOT}/p0_v5.pbtxt"
 readonly DEFAULT_DB_PATH="${DB_ROOT}/otto.db"
 readonly DEFAULT_LOGGING_CONFIG="${CONFIGS_ROOT}/p0_v0.logging.config"
+
+# HACK: To install as a systemd service, ensure we're running in the repo.
+pushd "${REPO_LOCATION}"
 
 # CLEANING ===========================================
 echo -n "${CLEANING__________}"

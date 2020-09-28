@@ -1,0 +1,11 @@
+[Unit]
+Description=Grow yourself a garden!
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /home/pi/otto/src/build_and_run.sh
+TimeoutStartSec=0
+
+[Install]
+WantedBy=default.target

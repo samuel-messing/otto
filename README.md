@@ -12,6 +12,15 @@ similar devices.
 From the top-level directory:
 
 ```
+ln -s /etc/systemd/system/otto.service /home/pi/otto/otto.service
+sudo systemctl daemon-reload
+sudo systemctl enable otto.service
+sudo systemctl start otto.service
+```
+
+If it's the first time running the binary on the machine, better to do:
+
+```
 ./src/build_and_run.sh
 ```
 

@@ -13,6 +13,7 @@ function install_command() {
   fi
 }
 
+install_command 'clang-format' 'clang-format'
 install_command 'protoc' 'protobuf-compiler'
 install_command 'virtualenv' 'virtualenv'
 
@@ -78,6 +79,7 @@ trap finish EXIT
 echo -n "${SOURCE_VIRTUALENV_}"
 # activate is idempotent
 . otto-env/bin/activate
+pip install -r "${ROOT}/requirements.txt"
 echo "${DONE}"
 
 # FORMATTING CODE ====================================

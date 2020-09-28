@@ -1,5 +1,5 @@
 from db import Db
-from flask import Flask, redirect, render_template, send_from_directory
+from flask import Flask, redirect, render_template, send_from_directory, send_file
 from optparse import OptionParser
 import RPi.GPIO as GPIO
 import atexit
@@ -7,6 +7,7 @@ import config
 import sys
 import threading
 import time
+import glob
 
 APP = Flask(__name__)
 
@@ -38,6 +39,14 @@ def pump(name, action):
     else:
         print("ERROR: No pump with name", name, "exists.", sep=" ")
     return redirect('/', code=302)
+
+
+@APP.route('/v1/camera/latest')
+def picture():
+    images = glob.glob("imgs/*.png")
+    images.sort()
+    logger.info('Serving image at: %s' % images[0])
+    return send_file('../' + images[0], mimetype='image/png')
 
 
 def run_scheduler():

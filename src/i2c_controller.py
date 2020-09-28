@@ -23,4 +23,4 @@ class I2cController(object):
         # Note: weirdly you specify which pins are _off_, not which ones
         # are _on_.
         self.bus.write_byte(0x20, reduce(lambda x, y: x + y,
-                                    map(lambda x: 2**x, self.off_pins)))
+                                         map(lambda x: 2**x, self.off_pins)))

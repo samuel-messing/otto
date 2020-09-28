@@ -34,6 +34,9 @@ class Action(object):
             plant.pump.on()
             time.sleep(self.duration_secs)
             plant.pump.off()
+        if self.action == CAMERA:
+            camera = config.CONFIG.camera
+            camera.snapshot(plant_name)
         self.logger.info("END EXECUTING " + self.plant_name +
                          " action: " + str(self.action))
 

@@ -2,6 +2,7 @@ from action import Action
 from config_pb2 import Config as PbConfig
 from google.protobuf import text_format
 from action import Action
+from camera import Camera
 from plant import Plant
 from pump import Pump
 from i2c_controller import I2cController
@@ -17,6 +18,7 @@ class Config(object):
         self.plants = plants
         # Dictionary, pump_name: Pump
         self.pumps = pumps
+        self.camera = Camera()
         self.i2c = I2cController()
         self.db = db
 

@@ -42,11 +42,17 @@ def pump(name, action):
 
 
 @APP.route('/v1/camera/latest')
-def picture():
+def latest_picture():
     images = glob.glob("imgs/*.png")
     images.sort(reverse=True)
     logger.info('Serving image at: %s' % images[0])
     return send_file('../' + images[0], mimetype='image/png')
+
+
+@APP.route('/v1/camera/snapshot')
+def take_picture():
+    config.CONFIG.camera.snapshot('TEST')
+    return redirect('/', code=302)
 
 
 def run_scheduler():

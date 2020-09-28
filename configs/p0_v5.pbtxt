@@ -60,7 +60,7 @@ actions {
       min: 30
     }
   }
-  duration_secs: 300
+  duration_secs: 450
 }
 actions {
   plant_name: "Grape (middle)"

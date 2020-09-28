@@ -4,10 +4,10 @@
 <body>
 <div class="section">
   <div class="container">
+    <img src="v1/camera/latest" />
     <div class="columns">
       <div class="column"></div>
       <div class="column">
-        <img src="v1/camera/latest" />
         {% for plant in config.plants.values() %}
           <a class="pump button is-large is-fullwidth {{ "is-success" if plant.pump.is_running else "" }}"
              href="v1/pump/{{ plant.pump.name }}/{{ "off" if plant.pump.is_running else "on"}}">

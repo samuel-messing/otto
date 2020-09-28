@@ -44,7 +44,7 @@ def pump(name, action):
 @APP.route('/v1/camera/latest')
 def picture():
     images = glob.glob("imgs/*.png")
-    images.sort()
+    images.sort(reverse=True)
     logger.info('Serving image at: %s' % images[0])
     return send_file('../' + images[0], mimetype='image/png')
 

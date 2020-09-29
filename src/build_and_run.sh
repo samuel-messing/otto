@@ -79,7 +79,7 @@ trap finish EXIT
 echo -n "${SOURCE_VIRTUALENV_}"
 # activate is idempotent
 . otto-env/bin/activate
-pip install -r "${ROOT}/requirements.txt"
+#pip install -r "${ROOT}/requirements.txt"
 echo "${DONE}"
 
 # FORMATTING CODE ====================================

@@ -10,7 +10,7 @@ import time
 import glob
 
 APP = Flask(__name__)
-
+APP.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @APP.route('/')
 def index():
@@ -43,7 +43,7 @@ def pump(name, action):
 
 @APP.route('/v1/camera/latest')
 def latest_picture():
-    images = glob.glob("imgs/*.png")
+    images = glob.glob("imgs/*.jpg")
     images.sort(reverse=True)
     logger.info('Serving image at: %s' % images[0])
     return send_file('../' + images[0], mimetype='image/png')

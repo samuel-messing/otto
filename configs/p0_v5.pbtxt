@@ -23,11 +23,47 @@ pumps {
   i2c_pin_number: 5
 }
 plants {
+  name: "Sweet Cherry 100 (left)"
+  pump_name: "left"
+}
+plants {
+  name: "Grape (middle)"
+  pump_name: "middle"
+}
+plants {
   name: "Sweet Cherry 100 (right)"
   pump_name: "right"
 }
 actions {
   plant_name: "Sweet Cherry 100 (right)"
+  action: WATER
+  tick {
+    weekly {
+      day_of_week: MONDAY
+      day_of_week: WEDNESDAY
+      day_of_week: SATURDAY
+      hour: 8
+      min: 30
+    }
+  }
+  duration_secs: 450
+}
+actions {
+  plant_name: "Grape (middle)"
+  action: WATER
+  tick {
+    weekly {
+      day_of_week: MONDAY
+      day_of_week: WEDNESDAY
+      day_of_week: SATURDAY
+      hour: 8
+      min: 30
+    }
+  }
+  duration_secs: 450
+}
+actions {
+  plant_name: "Sweet Cherry 100 (left)"
   action: WATER
   tick {
     weekly {

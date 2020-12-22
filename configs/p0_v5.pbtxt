@@ -1,83 +1,83 @@
 pumps {
-  name: "right"
+  name: "one"
   i2c_pin_number: 0
 }
 pumps {
-  name: "middle"
+  name: "two"
   i2c_pin_number: 1
 }
 pumps {
-  name: "left"
+  name: "three"
   i2c_pin_number: 2
 }
 pumps {
-  name: "unused_3"
+  name: "four"
   i2c_pin_number: 3
 }
 pumps {
-  name: "unused_4"
+  name: "five"
   i2c_pin_number: 4
 }
 pumps {
-  name: "unusued_5"
+  name: "six"
   i2c_pin_number: 5
 }
 plants {
-  name: "Sweet Cherry 100 (left)"
-  pump_name: "left"
+  name: "36 Cell Planter"
+  pump_name: "one"
 }
 plants {
-  name: "Grape (middle)"
-  pump_name: "middle"
+  name: "6 Net Cup Planter"
+  pump_name: "two"
 }
 plants {
-  name: "Sweet Cherry 100 (right)"
-  pump_name: "right"
+  name: "12 Net Cup Planter"
+  pump_name: "three"
 }
 actions {
-  plant_name: "Sweet Cherry 100 (right)"
+  plant_name: "36 Cell Planter"
   action: WATER
   tick {
     weekly {
-      day_of_week: MONDAY
-      day_of_week: WEDNESDAY
+      day_of_week: TUESDAY
+      day_of_week: THURSDAY
       day_of_week: SATURDAY
       hour: 8
       min: 30
     }
   }
-  duration_secs: 450
+  duration_secs: 600
 }
 actions {
-  plant_name: "Grape (middle)"
+  plant_name: "6 Net Cup Planter"
   action: WATER
   tick {
     weekly {
-      day_of_week: MONDAY
-      day_of_week: WEDNESDAY
+      day_of_week: TUESDAY
+      day_of_week: THURSDAY
       day_of_week: SATURDAY
       hour: 8
       min: 30
     }
   }
-  duration_secs: 450
+  duration_secs: 540
 }
 actions {
-  plant_name: "Sweet Cherry 100 (left)"
+  plant_name: "12 Net Cup Planter"
   action: WATER
   tick {
     weekly {
-      day_of_week: MONDAY
-      day_of_week: WEDNESDAY
+      day_of_week: TUESDAY
+      day_of_week: THURSDAY
       day_of_week: SATURDAY
       hour: 8
       min: 30
     }
   }
-  duration_secs: 450
+  duration_secs: 900
 }
 actions {
-  plant_name: "Sweet Cherry 100 (right)"
+  plant_name: "36 Cell Planter"
   action: PICTURE
   tick {
     weekly {

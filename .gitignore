@@ -1,6 +1,7 @@
 *.pyc
 *.swp
 *.swo
+*.swn
 db/*
 imgs/*
 logs/*

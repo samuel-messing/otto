@@ -2,7 +2,7 @@ Flask==1.0.2
 autopep8==1.4
 ipython==7.16.3
 picamera==1.13
-protobuf==3.6.1
+protobuf==3.18.3
 pyyaml>=4.2b1
 rpi.gpio==0.6.3
 schedule==0.5.0

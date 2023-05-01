@@ -1,4 +1,4 @@
-Flask==1.0.2
+Flask==2.3.2
 autopep8==1.4
 ipython==7.16.3
 picamera==1.13
